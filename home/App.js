@@ -1,25 +1,48 @@
 import Component from '../Component.js';
 import Header from './Header.js';
 import FilterImages from './FilterImages.js';
-//import ImageList from './ImageList.js';
-import animals from '../data/images.js';
+import ImageList from './ImageList.js';
+import images from '../data/images.js';
 
+// renders all components: header, filter, list of images, and image items
 class App extends Component{
 
     onRender(dom){
 
-        const props = {
-            animals: animals
-        };
-
         const header = new Header();
-        const headerDOM = header.renderDOM();
+        const headerDOM = header.renderDOM(); 
         dom.prepend(headerDOM);
 
-        const filterImages = new FilterImages();
+        const props = {
+            images: images
+        };
 
-        // render FilterImages
-        // render ImageList
+        const imageList = new ImageList(props);
+        const imageListDOM = imageList.renderDOM();
+        const listDiv = dom.querySelector('.animal-cards');
+        listDiv.appendChild(imageListDOM);
+       
+        const filterImages = new FilterImages({
+            images: images,
+            onFilter: (imageKeyword => {
+                let filteredImages;
+                if (!imageKeyword) {
+                    filteredImages = images;
+                }
+                else {
+                    filteredImages = images.filter(image => {
+                        return image.keyword === imageKeyword;
+                    });
+                }
+                const updateProps = { images: filteredImages };
+                imageList.update(updateProps);
+            })
+
+        });
+
+        const filterImagesDOM = filterImages.renderDOM();
+        const filterSection = dom.querySelector('#filter');
+        filterSection.appendChild(filterImagesDOM);
     }
 
     renderHTML(){

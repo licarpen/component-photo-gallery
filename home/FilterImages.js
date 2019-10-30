@@ -3,21 +3,17 @@ import Component from '../Component.js';
 class FilterImages extends Component{
 
     renderHTML(){
+        const images = this.props.images;
+        const keywords = images.map(image => image.keyword);
+        const uniqueKeywords = [...new Set(keywords)];
+        const uniqueKeywordHTMLStrings = uniqueKeywords.map(keyword => `<option value="${keyword}">${keyword}</option>`);
+        let optionsHTMLString = '';
+        uniqueKeywordHTMLStrings.forEach(optionString => {
+            optionsHTMLString += optionString;
+        });
+
         return `
-        <select name="animals" id="animal-filter">
-                <option value="narwhal">Narwhal</option>
-                <option value="rhino">Rhino</option>
-                <option value="unicorn">Unicorn</option>
-                <option value="unilego">Unilego</option>
-                <option value="triceratops">Triceratops</option>
-                <option value="markhor">Markhor</option>
-                <option value="mouflon">Mouflon</option>
-                <option value="addax">Addax</option>
-                <option value="chameleon">Chameleon</option>
-                <option value="lizard">Lizard</option>
-                <option value="dragon">Dragon</option>
-                <option value="">All</option>
-            </select>`;
+        <select name="animals" id="animal-filter"><option value="">All</option>${optionsHTMLString}</select>`;
     }
 
     onRender(select){

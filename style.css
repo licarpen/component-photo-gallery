@@ -1,0 +1,66 @@
+body{
+    width: 80%;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background: pink;
+    text-align: center;
+}
+
+header{
+    padding: 20px;
+    background: purple;
+    color: whitesmoke;
+    font-size: 250%;
+    font-weight: bolder;
+
+}
+
+#filter{
+    background: blueviolet;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#animal-list{
+    background: rgb(229, 132, 189);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.animal-container{
+    background: rgb(81, 17, 90);
+    color: whitesmoke;
+    width: 250px;
+    border: solid 1px black;
+    padding: 20px;
+    margin: 20px;
+}
+
+h2{
+    font-size: 200%;
+    font-weight: bolder;
+    padding: 5px;
+}
+
+h3{
+    font-size: 125%;
+    font-weight: bolder;
+    padding: 4px;
+}
+
+.horn{
+    font-size: 100%;
+    font-weight: normal;
+    font-style: italic;
+    padding: 5px;
+}
+
+.animal-image-container{
+    width: 250px;
+    height: 300px;
+}
+
+.animal-image{
+    width: 250px;
+}

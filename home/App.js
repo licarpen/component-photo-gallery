@@ -2,6 +2,7 @@ import Component from '../Component.js';
 import Header from './Header.js';
 import FilterImages from './FilterImages.js';
 import ImageList from './ImageList.js';
+import AddImage from './AddImage.js';
 import images from '../data/images.js';
 
 // renders all components: header, filter, list of images, and image items
@@ -21,6 +22,17 @@ class App extends Component{
         const imageListDOM = imageList.renderDOM();
         const listDiv = dom.querySelector('.animal-cards');
         listDiv.appendChild(imageListDOM);
+
+        const addImage = new AddImage({
+            images: images,
+            onSubmit: (formImage) => {
+                images.push(formImage);
+                imageList.update(images);
+            }
+        });
+        const addImageDOM = addImage.renderDOM();
+        const formDiv = dom.querySelector('.form');
+        formDiv.appendChild(addImageDOM);
        
         const filterImages = new FilterImages({
             images: images,
@@ -51,6 +63,8 @@ class App extends Component{
         <div>
         <main>
             <div id="filter">
+            </div>
+            <div class="form">
             </div>
             <div class="animal-cards">
             </div>

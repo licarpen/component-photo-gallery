@@ -3,7 +3,7 @@ import Component from '../Component.js';
 class FilterImages extends Component{
 
     renderHTML(){
-        const images = this.props.images;
+        const { images } = this.props;
         const keywords = images.map(image => image.keyword);
         const uniqueKeywords = [...new Set(keywords)];
         const uniqueKeywordHTMLStrings = uniqueKeywords.map(keyword => `<option value="${keyword}">${keyword}</option>`);
@@ -17,7 +17,7 @@ class FilterImages extends Component{
     }
 
     onRender(select){
-        const onFilter = this.props.onFilter;
+        const { onFilter } = this.props;
 
         select.addEventListener('change', () => {
             onFilter(select.value);
